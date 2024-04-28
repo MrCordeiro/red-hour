@@ -1,16 +1,16 @@
 import * as vscode from 'vscode';
 
-
 /**
  * Retrieves the background color from the VS Code configuration.
  * If no custom background color is set, it returns the default background color.
  * @returns The background color as a string.
  */
 export function getBackgroundColor(): string {
-  const defaultBackgroundColor = "#000000";
+  const defaultBackgroundColor = '#000000';
   const config = vscode.workspace.getConfiguration();
   const colorCustomizations = config.get('workbench.colorCustomizations');
-  const currentBackgroundColor = (colorCustomizations as any)?.['editor.background'] ?? defaultBackgroundColor;
+  const currentBackgroundColor =
+    (colorCustomizations as any)?.['editor.background'] ?? defaultBackgroundColor;
   console.log(`Current background color: ${currentBackgroundColor}`);
   return currentBackgroundColor;
 }
@@ -20,14 +20,15 @@ export function getBackgroundColor(): string {
  * @param bgColor The color to set as the background color.
  */
 export function setBackgroundColor(bgColor: string) {
-  vscode.workspace.getConfiguration().update('workbench.colorCustomizations', {
-    'editor.background': bgColor,
-  },
+  vscode.workspace.getConfiguration().update(
+    'workbench.colorCustomizations',
+    {
+      'editor.background': bgColor,
+    },
     vscode.ConfigurationTarget.Workspace
   );
   console.log(`Background color set to: ${bgColor}`);
 }
-
 
 /**
  * Updates the background color based on the meeting time.
@@ -47,16 +48,19 @@ export function updateColor(meetingTime: Date, originalBgColor: string) {
     // Reset the color if the meeting time has passed
     setBackgroundColor(originalBgColor);
   } else if (effectActive) {
-    const intensity = Math.floor(255 * (1 - (minutesUntilMeeting / 15)));
+    const intensity = Math.floor(255 * (1 - minutesUntilMeeting / 15));
     const newColor = adjustColorIntensity(originalBgColor, intensity);
-    vscode.workspace.getConfiguration().update('workbench.colorCustomizations', {
-      "editor.background": newColor
-    }, vscode.ConfigurationTarget.Workspace);
+    vscode.workspace.getConfiguration().update(
+      'workbench.colorCustomizations',
+      {
+        'editor.background': newColor,
+      },
+      vscode.ConfigurationTarget.Workspace
+    );
   }
 }
 
 function adjustColorIntensity(baseColor: string, redIntensity: number): string {
-
   // Validate the baseColor format
   if (!/^#[0-9A-F]{6}$/i.test(baseColor)) {
     throw new Error('Invalid color format. Please use a 6-digit hex color code.');

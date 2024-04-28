@@ -18,11 +18,11 @@
     "commands": [
       {
         "command": "red-hour.setMeetingTime",
-        "title":  "Set meeting time",
+        "title": "Set meeting time",
         "category": "Red Hour"
       },
       {
-        "command" : "red-hour.cancelMeetingTime",
+        "command": "red-hour.cancelMeetingTime",
         "title": "Cancel meeting time",
         "category": "Red Hour"
       }
@@ -34,7 +34,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts && prettier --config .prettierrc 'src/**/*.ts' --write",
-    "test": "vscode-test"
+    "test": "vscode-test --coverage"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",

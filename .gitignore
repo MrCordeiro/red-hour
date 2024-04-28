@@ -1,5 +1,11 @@
+# Builds
 out
 dist
+
+# Dependency directories
 node_modules
-.vscode-test/
 *.vsix
+
+# Testing
+.vscode-test/
+coverage/
