@@ -9,13 +9,22 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:extension.setMeetingTime",
+    "onCommand:extension.cancelMeetingTime"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "red-hour.setMeetingTime",
-        "title": "Red Hour: Set meeting time"
+        "title":  "Set meeting time",
+        "category": "Red Hour"
+      },
+      {
+        "command" : "red-hour.cancelMeetingTime",
+        "title": "Cancel meeting time",
+        "category": "Red Hour"
       }
     ]
   },
